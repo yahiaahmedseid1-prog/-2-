@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تنزيل YAHIA TV & YAHIA PLAYER | الموقع الرسمي للأندرويد</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cairo (Arabic) & JetBrains Mono (Codes/Data) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            rose: {
+              450: '#fb7185',
+              550: '#e11d48',
+            },
+            gray: {
+              450: '#9ca3af',
+              850: '#1f2937',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #060913;
+      color: #f3f4f6;
+    }
+    /* Hide scrollbars for a clean look but allow scrolling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #060913;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f2937;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #374151;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans antialiased relative selection:bg-rose-500 selection:text-white">
+
+  <!-- Glow Ambient Highlights -->
+  <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-rose-900/10 rounded-full blur-[140px] pointer-events-none"></div>
+  <div class="absolute top-1/3 right-10 w-[600px] h-[600px] bg-indigo-950/10 rounded-full blur-[160px] pointer-events-none"></div>
+  <div class="absolute bottom-10 left-10 w-[400px] h-[400px] bg-teal-950/10 rounded-full blur-[130px] pointer-events-none"></div>
+
+  <!-- Sticky Header -->
+  <header class="sticky top-0 z-40 bg-[#060913]/95 backdrop-blur-md border-b border-gray-800/60 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-rose-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-rose-950/40 border border-rose-500/30 group-hover:scale-105 transition-transform duration-300">
+          <i data-lucide="tv" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="text-xl font-black tracking-tight text-white block">YAHIA <span class="text-rose-500">TV</span></span>
+          <span class="text-[10px] text-gray-450 font-bold block -mt-1 tracking-wider uppercase">Official Website</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1 bg-slate-900/50 p-1.5 rounded-full border border-gray-800/80">
+        <a href="#downloads" onclick="setActiveTab('downloads')" id="nav-downloads" class="nav-btn px-5 py-2 rounded-full text-sm font-bold transition-all duration-200 bg-gradient-to-r from-rose-600 to-rose-500 text-white shadow-md">
+          تنزيل التطبيق والمشغل
+        </a>
+        <a href="#smartlink" onclick="setActiveTab('smartlink')" id="nav-smartlink" class="nav-btn px-5 py-2 rounded-full text-sm font-bold text-gray-400 hover:text-white hover:bg-gray-800/30 transition-all duration-200">
+          دليل الروابط الذكية 🌐
+        </a>
+        <a href="#steps" onclick="setActiveTab('steps')" id="nav-steps" class="nav-btn px-5 py-2 rounded-full text-sm font-bold text-gray-400 hover:text-white hover:bg-gray-800/30 transition-all duration-200">
+          خطوات التثبيت ⚙️
+        </a>
+        <a href="#faq" onclick="setActiveTab('faq')" id="nav-faq" class="nav-btn px-5 py-2 rounded-full text-sm font-bold text-gray-400 hover:text-white hover:bg-gray-800/30 transition-all duration-200">
+          الأسئلة الشائعة ❓
+        </a>
+      </nav>
+
+      <!-- Right Actions (Desktop) -->
+      <div class="hidden md:flex items-center gap-3">
+        <button onclick="handleShare()" class="bg-gray-900 hover:bg-gray-850 border border-gray-850 hover:border-gray-800 text-white font-bold text-sm py-2.5 px-5 rounded-2xl transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-md">
+          <i data-lucide="share-2" class="w-4 h-4"></i>
+          مشاركة الموقع
+        </button>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl bg-slate-900 border border-gray-800 text-gray-300 hover:text-white focus:outline-none">
+        <i data-lucide="menu" id="menu-icon-open" class="w-6 h-6"></i>
+        <i data-lucide="x" id="menu-icon-close" class="w-6 h-6 hidden"></i>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-[#060913]/98 border-b border-gray-800 py-6 px-4 space-y-3 shadow-2xl transition-all duration-300">
+      <a href="#downloads" onclick="selectMobileTab('downloads')" id="mob-nav-downloads" class="mob-nav-btn block px-4 py-3 rounded-xl text-base font-bold bg-rose-600 text-white">
+        تنزيل التطبيق والمشغل
+      </a>
+      <a href="#smartlink" onclick="selectMobileTab('smartlink')" id="mob-nav-smartlink" class="mob-nav-btn block px-4 py-3 rounded-xl text-base font-bold text-gray-300 hover:bg-gray-850">
+        دليل الروابط الذكية 🌐
+      </a>
+      <a href="#steps" onclick="selectMobileTab('steps')" id="mob-nav-steps" class="mob-nav-btn block px-4 py-3 rounded-xl text-base font-bold text-gray-300 hover:bg-gray-850">
+        خطوات التثبيت ⚙️
+      </a>
+      <a href="#faq" onclick="selectMobileTab('faq')" id="mob-nav-faq" class="mob-nav-btn block px-4 py-3 rounded-xl text-base font-bold text-gray-300 hover:bg-gray-850">
+        الأسئلة الشائعة ❓
+      </a>
+      <div class="pt-4 border-t border-gray-800 flex flex-col gap-3">
+        <button onclick="handleShare(); toggleMobileMenu();" class="w-full bg-gradient-to-r from-rose-600 to-indigo-600 text-white font-bold py-3 px-5 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer shadow-md">
+          <i data-lucide="share-2" class="w-4 h-4"></i>
+          مشاركة الموقع الآن
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-20 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Announcement badge -->
+      <div class="inline-flex items-center gap-2 bg-rose-500/10 text-rose-450 text-xs font-black px-4 py-2 rounded-full mb-8 border border-rose-500/20 shadow-lg shadow-rose-950/10">
+        <i data-lucide="sparkles" class="w-4 h-4 text-rose-500 animate-pulse"></i>
+        الإصدار الرسمي والنهائي متوفر الآن مجاناً 2026
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white leading-tight mb-6 tracking-tight">
+        شاهد قنواتك المفضلة مع <br class="hidden sm:inline">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-pink-500 to-indigo-400">
+          تطبيق YAHIA TV والمشغل الرسمي
+        </span>
+      </h1>
+
+      <p class="text-gray-450 text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+        البوابة الأقوى والأكثر استقراراً لبث المحتوى التلفزيوني المباشر والقنوات الرياضية والترفيهية بجودة خارقة. حمّل التطبيق والمشغل المساعد معاً للحصول على تجربة مشاهدة متكاملة وسلسة بلا انقطاع.
+      </p>
+
+      <!-- Quick stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto p-4 sm:p-6 rounded-3xl bg-slate-900/40 border border-gray-850 mb-12">
+        <div class="text-center p-2">
+          <span class="block text-xl sm:text-3xl font-black text-rose-500">100%</span>
+          <span class="text-[11px] text-gray-400 font-bold block mt-1">مجاني بالكامل</span>
+        </div>
+        <div class="text-center p-2 border-r border-gray-800">
+          <span class="block text-xl sm:text-3xl font-black text-white">4K / FHD</span>
+          <span class="text-[11px] text-gray-400 font-bold block mt-1">جودة بث فائقة</span>
+        </div>
+        <div class="text-center p-2 border-r border-gray-800">
+          <span class="block text-xl sm:text-3xl font-black text-white">ثبات تام</span>
+          <span class="text-[11px] text-gray-400 font-bold block mt-1">بدون تقطيع</span>
+        </div>
+        <div class="text-center p-2 border-r border-gray-800">
+          <span class="block text-xl sm:text-3xl font-black text-emerald-400">آمن وجاهز</span>
+          <span class="text-[11px] text-gray-400 font-bold block mt-1">نسخة موثوقة</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Downloads Cards Grid -->
+  <section id="downloads" class="py-12 px-4 max-w-7xl mx-auto scroll-mt-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      
+      <!-- YAHIA TV CARD -->
+      <div class="bg-[#0b0f19]/80 border-2 border-rose-500/30 rounded-[32px] p-6 sm:p-8 relative overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-rose-500/50 transition-all duration-300">
+        <!-- Visual Glow background element -->
+        <div class="absolute -top-12 -left-12 w-48 h-48 bg-rose-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <span class="absolute top-4 left-4 bg-rose-600/20 text-rose-450 text-[10px] font-black py-1 px-3 rounded-full border border-rose-500/30 uppercase tracking-widest">
+          المشغل الأساسي للقنوات 📺
+        </span>
+
+        <div>
+          <!-- Logo & Header -->
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-rose-600/15 flex items-center justify-center text-rose-500 border border-rose-500/30 shrink-0">
+              <i data-lucide="tv" class="w-8 h-8"></i>
+            </div>
+            <div>
+              <h2 class="text-2xl font-black text-white">تطبيق YAHIA TV</h2>
+              <p class="text-xs text-rose-450 font-bold mt-0.5">الإصدار: v2.1.0 • أندرويد 5.0+</p>
+            </div>
+          </div>
+
+          <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+            التطبيق الرئيسي الذي يحتوي على كامل باقات القنوات العربية والرياضية العالمية مع جدول مباريات محدّث ومباشر، وقائمة ترفيهية متكاملة وسهلة التصفح بلمسة عصرية.
+          </p>
+
+          <!-- Specifications List -->
+          <div class="bg-slate-950/60 rounded-2xl p-4 border border-gray-850/80 mb-6 space-y-2 text-xs">
+            <div class="flex justify-between items-center py-1 border-b border-gray-900">
+              <span class="text-gray-400">حجم الملف الأصلي:</span>
+              <strong class="text-white">12.5 ميجابايت</strong>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-gray-900">
+              <span class="text-gray-400 font-semibold">حجم الملف المدور:</span>
+              <strong class="text-rose-400 font-bold">31.32 ميجابايت</strong>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-gray-900">
+              <span class="text-gray-400">صيغة الملف:</span>
+              <strong class="text-cyan-400 font-mono">APK (أندرويد)</strong>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-gray-400">تاريخ التحديث:</span>
+              <strong class="text-white">يونيو 2026</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Download Actions -->
+        <div class="space-y-3">
+          <a href="https://www.mediafire.com/file/st0wz11ug19x3h2/Yahia_TV.apk/file" target="_blank" rel="noopener noreferrer" class="w-full bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-black text-sm py-4 px-6 rounded-2xl shadow-lg shadow-rose-950/40 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer transform hover:-translate-y-0.5">
+            <i data-lucide="download" class="w-5 h-5"></i>
+            تحميل تطبيق YAHIA TV مباشرة (من ميديا فاير)
+          </a>
+          
+          <div class="grid grid-cols-2 gap-3">
+            <button onclick="copyToClipboard('https://www.mediafire.com/file/st0wz11ug19x3h2/Yahia_TV.apk/file', 'app')" class="bg-gray-900 hover:bg-gray-850 text-xs text-gray-300 font-bold py-3 px-4 rounded-xl border border-gray-800 transition flex items-center justify-center gap-2 cursor-pointer">
+              <i data-lucide="link" class="w-3.5 h-3.5 text-rose-500"></i>
+              <span id="btn-text-app">نسخ رابط التنزيل</span>
+            </button>
+            <button onclick="toggleQr('app')" class="bg-gray-900 hover:bg-gray-850 text-xs text-gray-300 font-bold py-3 px-4 rounded-xl border border-gray-800 transition flex items-center justify-center gap-2 cursor-pointer">
+              <i data-lucide="qr-code" class="w-3.5 h-3.5 text-rose-500"></i>
+              عرض كود الـ QR
+            </button>
+          </div>
+
+          <!-- QR Code area -->
+          <div id="qr-app" class="hidden pt-4 border-t border-gray-900 text-center flex flex-col items-center justify-center">
+            <div class="p-3 bg-white rounded-2xl inline-block border-2 border-rose-500/30">
+              <!-- Inline QR simulation for simplicity -->
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.mediafire.com/file/st0wz11ug19x3h2/Yahia_TV.apk/file" alt="YAHIA TV QR" class="w-32 h-32">
+            </div>
+            <span class="text-[10px] text-gray-400 mt-2 block">امسح الكود بكاميرا الهاتف للتحميل السريع والآمن</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- YAHIA PLAYER CARD -->
+      <div class="bg-[#0b0f19]/80 border-2 border-indigo-500/20 rounded-[32px] p-6 sm:p-8 relative overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-indigo-500/40 transition-all duration-300">
+        <!-- Visual Glow background element -->
+        <div class="absolute -top-12 -left-12 w-48 h-48 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <span class="absolute top-4 left-4 bg-indigo-600/20 text-indigo-400 text-[10px] font-black py-1 px-3 rounded-full border border-indigo-500/30 uppercase tracking-widest">
+          المشغل الإضافي المساعد ⚡
+        </span>
+
+        <div>
+          <!-- Logo & Header -->
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-indigo-600/15 flex items-center justify-center text-indigo-400 border border-indigo-500/30 shrink-0">
+              <i data-lucide="play-circle" class="w-8 h-8"></i>
+            </div>
+            <div>
+              <h2 class="text-2xl font-black text-white">تطبيق YAHIA PLAYER</h2>
+              <p class="text-xs text-indigo-400 font-bold mt-0.5">الإصدار: v1.8.0 • أندرويد 5.0+</p>
+            </div>
+          </div>
+
+          <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+            الأداة البرمجية المساعدة والمطورة التي تمكنك من فك تشفير وفك ضغط تدفقات البث المباشر بأعلى كفاءة وسرعة، وبدون مواجهة شاشات سوداء أو تعليق الصوت.
+          </p>
+
+          <!-- Specifications List -->
+          <div class="bg-slate-950/60 rounded-2xl p-4 border border-gray-850/80 mb-6 space-y-2 text-xs">
+            <div class="flex justify-between items-center py-1 border-b border-gray-900">
+              <span class="text-gray-400">حجم الملف الأصلي:</span>
+              <strong class="text-white">6.3 ميجابايت</strong>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-gray-900">
+              <span class="text-gray-400 font-semibold">حجم الملف المدور:</span>
+              <strong class="text-indigo-400 font-bold">22.51 ميجابايت</strong>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-gray-900">
+              <span class="text-gray-400">صيغة الملف:</span>
+              <strong class="text-cyan-400 font-mono">APK (أندرويد)</strong>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-gray-400">تاريخ التحديث:</span>
+              <strong class="text-white">يونيو 2026</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Download Actions -->
+        <div class="space-y-3">
+          <a href="https://www.mediafire.com/file/m26e0ajh3hu2yb4/YAHIA_Player.apk/file" target="_blank" rel="noopener noreferrer" class="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-black text-sm py-4 px-6 rounded-2xl shadow-lg shadow-indigo-950/40 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer transform hover:-translate-y-0.5">
+            <i data-lucide="download" class="w-5 h-5"></i>
+            تحميل مشغل YAHIA PLAYER المساعد (من ميديا فاير)
+          </a>
+          
+          <div class="grid grid-cols-2 gap-3">
+            <button onclick="copyToClipboard('https://www.mediafire.com/file/m26e0ajh3hu2yb4/YAHIA_Player.apk/file', 'player')" class="bg-gray-900 hover:bg-gray-850 text-xs text-gray-300 font-bold py-3 px-4 rounded-xl border border-gray-800 transition flex items-center justify-center gap-2 cursor-pointer">
+              <i data-lucide="link" class="w-3.5 h-3.5 text-indigo-400"></i>
+              <span id="btn-text-player">نسخ رابط التنزيل</span>
+            </button>
+            <button onclick="toggleQr('player')" class="bg-gray-900 hover:bg-gray-850 text-xs text-gray-300 font-bold py-3 px-4 rounded-xl border border-gray-800 transition flex items-center justify-center gap-2 cursor-pointer">
+              <i data-lucide="qr-code" class="w-3.5 h-3.5 text-indigo-400"></i>
+              عرض كود الـ QR
+            </button>
+          </div>
+
+          <!-- QR Code area -->
+          <div id="qr-player" class="hidden pt-4 border-t border-gray-900 text-center flex flex-col items-center justify-center">
+            <div class="p-3 bg-white rounded-2xl inline-block border-2 border-indigo-500/30">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.mediafire.com/file/m26e0ajh3hu2yb4/YAHIA_Player.apk/file" alt="YAHIA PLAYER QR" class="w-32 h-32">
+            </div>
+            <span class="text-[10px] text-gray-400 mt-2 block">لا يكتمل فتح البث بدون هذا الملف الإضافي الصغير المساعد</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Smart Link & Redirect Guide Section -->
+  <section id="smartlink" class="py-20 px-4 bg-slate-950 border-t border-gray-800/80 scroll-mt-20 relative overflow-hidden">
+    <!-- Decorative visual bg representing redirection -->
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-emerald-500/20">
+          <i data-lucide="globe" class="w-4 h-4 animate-pulse"></i>
+          استضافة الموقع ونشره برابط احترافي ذكي
+        </div>
+        <h3 class="text-3xl sm:text-5xl font-black text-white mb-4">
+          توجيه فوري ومغناطيسي للمستخدمين 🚀
+        </h3>
+        <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+          هل تريد مشاركة موقعك عبر رابط مميز وقصير؟ نحن نوضح لك هنا كيف تستفيد من رابط الاستضافة العام المجاني وتنشئ رابطاً متغيراً ومباشراً يفتح موقعك لجميع زوارك فوراً بلا قيود!
+        </p>
+      </div>
+
+      <!-- Smart info panels split -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
+        
+        <!-- Panel A: The Real Active Direct URL -->
+        <div class="lg:col-span-5 bg-[#0e1224] border border-emerald-500/20 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xl relative overflow-hidden">
+          <div class="absolute -top-3 -left-3 w-20 h-20 bg-emerald-500/5 rounded-full blur-2xl"></div>
+          
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="bg-emerald-500/10 text-emerald-400 text-xs font-black py-1 px-3 rounded-full border border-emerald-500/20">
+                رابط النشر العام الفعّال 🟢
+              </span>
+              <i data-lucide="globe" class="w-5 h-5 text-emerald-400"></i>
+            </div>
+
+            <h4 class="text-xl font-bold text-white mb-3">رابطك العام والدائم (Hosted Link)</h4>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+              هذا هو الرابط الرسمي الذي تمنحه لك خدمة السحاب للتشغيل والاستضافة المباشرة. هو رابط حقيقي دائم، مجاني، وسريع جداً، ويعمل لدى الجميع دون استثناء.
+            </p>
+
+            <div class="bg-slate-950 p-4 rounded-2xl border border-gray-800/80 mb-6 font-sans">
+              <div class="text-[10px] text-gray-500 font-mono mb-2">رابط الخادم العام المباشر الحالي:</div>
+              <div class="text-xs text-emerald-400 font-mono select-all break-all overflow-hidden text-left bg-slate-900/60 p-2.5 rounded-lg border border-gray-800 font-semibold flex items-center justify-between gap-2">
+                <span id="shareable-url-preview" class="truncate">https://yahia-tv.applet.run/</span>
+                <button onclick="copyShareableLink()" class="p-1 px-2.5 bg-emerald-500/10 text-emerald-400 text-[10px] hover:bg-emerald-500/20 rounded border border-emerald-500/20 font-bold shrink-0 transition cursor-pointer">
+                  نسخ الرابط
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="py-3 px-4 rounded-xl bg-slate-900/40 border border-gray-800 text-[11px] text-gray-400 leading-relaxed">
+            <span class="text-amber-400 font-bold">لماذا يفشل رابط الـ dev؟</span> روابط التطوير التي تحتوي على <strong class="font-mono text-white text-xs whitespace-nowrap">-dev-</strong> تطلب صلاحيات حساب المطور الخاص بك، لذلك لا تفتح مع زوار الموقع. دائماً وزّع الرابط العام أعلاه!
+          </div>
+        </div>
+
+        <!-- Panel B: Short Redirect Generator & Simulator -->
+        <div class="lg:col-span-7 bg-[#0b0d1a] border border-gray-800 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="bg-rose-500/10 text-rose-400 text-xs font-black py-1 px-3 rounded-full border border-rose-500/20">
+                محاكي ومساعد تقصير الروابط 🔗
+              </span>
+              <i data-lucide="link" class="w-5 h-5 text-rose-450"></i>
+            </div>
+
+            <h4 class="text-xl font-bold text-white mb-2">اصنع رابطاً مخصصاً يسهل تذكره</h4>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+              الرابط الذي تمنحه لك السحابة قد يكون عميقاً وطويلاً، لذا يُفضّل ربطه برابط متغير فوري (Redirect) يحوّل الزائر تلقائياً إلى خادم التنزيل وبنقرة رشيقة واحدة. جرّب محاكي صنع الروابط بالأسفل لمعاينة النتيجة:
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label class="block text-xs font-bold text-gray-400 mb-2">اسم الرابط المخصص:</label>
+                <input
+                  type="text"
+                  id="custom-short-name"
+                  value="yahia-tv"
+                  oninput="updateSmartLinkPreview()"
+                  class="w-full bg-slate-950 border border-gray-800 focus:border-indigo-500 rounded-xl py-2.5 px-4 text-xs font-bold font-mono text-left text-white"
+                  placeholder="مثال: yahiatv"
+                >
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-400 mb-2">مزوّد الخدمة الذكية الموصى به:</label>
+                <select
+                  id="selected-provider"
+                  onchange="updateSmartLinkPreview()"
+                  class="w-full bg-slate-950 border border-gray-800 focus:border-indigo-500 rounded-xl py-2.5 px-4 text-xs font-bold text-right text-gray-300"
+                >
+                  <option value="bitly">Bitly (بشكل مجاني تماماً)</option>
+                  <option value="tinyurl">TinyURL (روابط فائقة السرعة)</option>
+                  <option value="rebrandly">Rebrandly (توجيه مخصص باسم نطاقك)</option>
+                  <option value="custom">شراء نطاق وحجز دومين مخصص (com / net)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Simulator Preview Card -->
+            <div class="bg-[#0b0c15] p-5 rounded-2xl border border-indigo-900/40 relative">
+              <span class="absolute -top-3 right-4 bg-indigo-600/20 text-indigo-400 text-[10px] font-semibold py-0.5 px-2 rounded-md border border-indigo-500/30">
+                معاينة الرابط المتغير المباشر المقترح
+              </span>
+              <div class="mt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                  <div id="smart-link-url" class="text-sm font-bold text-white font-mono break-all text-left">
+                    bit.ly/yahia-tv
+                  </div>
+                  <p class="text-[10px] text-gray-400 mt-1">عند النقر، يقوم بتحويل متصفح المستخدم فوراً لموقع البث والتنزيل الخاص بك!</p>
+                </div>
+                
+                <button onclick="copySmartLinkSuggested()" class="py-2.5 px-5 bg-gradient-to-r from-rose-600 to-indigo-600 hover:from-rose-500 hover:to-indigo-500 text-white font-bold text-xs rounded-xl transition cursor-pointer flex items-center gap-2 shadow-lg shrink-0">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  نسخ الرابط الذكي المقترح
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Configuration steps guide depending on choice -->
+          <div class="mt-6 border-t border-gray-800/80 pt-6">
+            <h5 class="text-xs font-bold text-white mb-3">خطوات إعداد هذا الرابط خطوة بخطوة وتسهيل استضافته:</h5>
+            <div id="guide-steps-container" class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-gray-400 leading-normal">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Quick interactive test block -->
+      <div class="bg-gradient-to-r from-rose-950/20 via-slate-900/60 to-rose-950/20 rounded-3xl p-6 sm:p-8 border border-gray-800 text-center max-w-4xl mx-auto">
+        <h5 class="font-bold text-white text-base mb-2">تريد تجربة تحويل الرابط الآن مجاناً؟</h5>
+        <p class="text-gray-400 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed mb-4">
+          تعد خدمة <strong>Bitly</strong> الخيار الأمثل والأنسب لمجتمع YAHIA لكونها تمنح روابط مجانية قصيرة لا تنتهي صلاحيتها أبداً وتوفر إحصائيات دقيقة عن عدد الأشخاص الذين ضغطوا على الرابط لتحميل التطبيق الخاص بك.
+        </p>
+        <div class="inline-flex items-center gap-2 text-xs font-bold bg-[#131c36] text-rose-400 border border-indigo-500/30 px-4 py-2 rounded-full shadow-lg shadow-indigo-950/40">
+          <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+          <span>الرابط العام جاهز 100% للنشر والمشاركة المباشرة!</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Installation Steps Section -->
+  <section id="steps" class="py-20 px-4 max-w-7xl mx-auto scroll-mt-20">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 bg-indigo-500/10 text-indigo-400 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-indigo-500/20">
+        <i data-lucide="settings" class="w-4 h-4 text-indigo-400"></i>
+        سهولة التحضير في 3 دقائق
+      </div>
+      <h3 class="text-3xl sm:text-5xl font-black text-white mb-4">
+        كيف تقوم بالتثبيت بنجاح؟ ⚙️
+      </h3>
+      <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+        اتبع هذه الخطوات الثلاث البسيطة والمصممة خصيصاً لمستخدمينا لتفادي أي عوائق في التنزيل والتشغيل.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Step 1 -->
+      <div class="bg-slate-900/30 border border-gray-850 rounded-[32px] p-6 sm:p-8 relative hover:border-gray-800 transition duration-300">
+        <div class="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-500 font-black text-xl flex items-center justify-center mb-6">
+          1
+        </div>
+        <h4 class="text-xl font-bold text-white mb-3">تحميل وتثبيت التطبيق</h4>
+        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+          اضغط أولاً على زر تحميل تطبيق <strong class="text-rose-400">YAHIA TV</strong> في الأعلى، بعد اكتمال التنزيل اضغط عليه للتثبيت. في حال ظهر تنبيه الأمان، قم بالموافقة وإكمال التثبيت.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="bg-slate-900/30 border border-gray-850 rounded-[32px] p-6 sm:p-8 relative hover:border-gray-800 transition duration-300">
+        <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-black text-xl flex items-center justify-center mb-6">
+          2
+        </div>
+        <h4 class="text-xl font-bold text-white mb-3">تثبيت المشغل المساعد</h4>
+        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+          قم بتحميل وتثبيت تطبيق <strong class="text-indigo-400">YAHIA PLAYER</strong> الإضافي. لا يحتاج لفتحه أو ضبطه، فقط اتركه مثبتاً على هاتفك لكونه مبرمجاً كملف تشفير مكمل.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="bg-slate-900/30 border border-gray-850 rounded-[32px] p-6 sm:p-8 relative hover:border-gray-800 transition duration-300">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-black text-xl flex items-center justify-center mb-6">
+          3
+        </div>
+        <h4 class="text-xl font-bold text-white mb-3">شاهد واستمتع بثبات!</h4>
+        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+          الآن، افتح تطبيق <strong class="text-white">YAHIA TV</strong> من هاتفك أو تلفازك، واختر الباقة المفضلة لتبدأ المباريات الحية والقنوات الترفيهية فوراً وبسيرفرات فائقة الدقة والسرعة.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 px-4 bg-slate-950/40 border-t border-gray-800/80 scroll-mt-20">
+    <div class="max-w-4xl mx-auto">
+      
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 bg-rose-500/10 text-rose-450 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-rose-500/20">
+          <i data-lucide="help-circle" class="w-4 h-4 text-rose-500"></i>
+          هل لديك استفسار؟
+        </div>
+        <h3 class="text-3xl sm:text-5xl font-black text-white mb-4">
+          الأسئلة الشائعة والإجابات ❓
+        </h3>
+        <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+          إليك أكثر الأسئلة التي يطرحها مستخدمونا مع الحلول التقنية المباشرة والموصى بها.
+        </p>
+      </div>
+
+      <!-- FAQ Accordion Container -->
+      <div id="faq-container" class="space-y-4">
+        <!-- Will be populated by JS for fully styled and interactive accordion -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Bottom CTA Footer Banner -->
+  <footer class="bg-slate-950 border-t border-gray-900 pt-16 pb-8 px-4 text-center">
+    <div class="max-w-4xl mx-auto">
+      
+      <div class="w-16 h-16 rounded-3xl bg-gradient-to-tr from-rose-600 to-indigo-600 flex items-center justify-center text-white mx-auto mb-6 shadow-lg shadow-rose-950/20 border border-rose-500/20">
+        <i data-lucide="tv" class="w-8 h-8"></i>
+      </div>
+
+      <h4 class="text-2xl font-black text-white mb-3">YAHIA TV & PLAYER</h4>
+      <p class="text-xs sm:text-sm text-gray-400 max-w-lg mx-auto leading-relaxed mb-8">
+        منصتك المثالية للبث التلفزيوني السلس والأسرع في الوطن العربي. كل هذا نقدمه مجاناً وبلا إعلانات مزعجة لدعم جميع عشاق الرياضة والدراما.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4 text-xs font-bold text-gray-400 mb-12">
+        <a href="#downloads" class="hover:text-white transition">التنزيلات المباشرة</a>
+        <span class="text-gray-700">•</span>
+        <a href="#smartlink" class="hover:text-white transition">دليل النشر</a>
+        <span class="text-gray-700">•</span>
+        <a href="#steps" class="hover:text-white transition">طريقة التثبيت</a>
+        <span class="text-gray-700">•</span>
+        <a href="#faq" class="hover:text-white transition">مركز المساعدة</a>
+      </div>
+
+      <div class="border-t border-gray-900 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500 font-medium">
+          &copy; 2026 جميع الحقوق محفوظة لشبكة YAHIA. تم التطوير والتحضير بأعلى حماية.
+        </p>
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-[10px] text-emerald-400 font-bold">جميع السيرفرات تعمل بكفاءة تامة</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Toast Toast System -->
+  <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 border border-indigo-500/30 text-white py-3 px-6 rounded-2xl shadow-2xl flex items-center gap-3 transition-all duration-300 translate-y-20 opacity-0 pointer-events-none z-50">
+    <div class="w-6 h-6 rounded-full bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20 text-indigo-400">
+      <i data-lucide="check" class="w-4 h-4"></i>
+    </div>
+    <span id="toast-message" class="text-xs sm:text-sm font-bold"></span>
+  </div>
+
+  <script>
+    // FAQ Data
+    const faqs = [
+      {
+        q: "لماذا يحتاج تطبيق YAHIA TV لتنزيل مشغل خارجي (YAHIA PLAYER)؟",
+        a: "تم تصميم تطبيق YAHIA TV بأعلى معايير السرعة وخفة الوزن، حيث يعتمد على مشغله البرمجي الخاص YAHIA PLAYER لمعالجة تدفقات الفيديو وفك التشفير بجودة عالية وبدون تقطيع. كلاهما مكمل للآخر ولن تتمكن من تفعيل القنوات أو تشغيل البث في التلفزيون أو الهاتف بدونه."
+      },
+      {
+        q: "ما هي الأجهزة التي يتوافق معها التطبيق؟",
+        a: "التطبيق متوافق بنسبة 100% مع جميع أجهزة أندرويد بدءاً من الإصدار 5.0 وما فوق. يشمل ذلك الهواتف الذكية، الأجهزة اللوحية (Tablets)، الشاشات الذكية بنظام أندرويد (Android TV)، وأجهزة التي في بوكس (Android TV Box) مثل Xiaomi Mi Box وغيرها، بالإضافة إلى أجهزة Firestick."
+      },
+      {
+        q: "تظهر لي رسالة 'تطبيق غير معروف' أو 'خطأ في الأمان' عند التثبيت؟",
+        a: "هذا طبيعي جداً لأن التطبيق يُثبّت بصيغة APK من خارج متجر Google Play. كل ما عليك فعله هو التوجه إلى إعدادات الهاتف > الأمان والحماية > ثم تفعيل خيار 'تثبيت تطبيقات من مصادر غير معروفة' لمتصفحك أو لمدير الملفات لديك."
+      },
+      {
+        q: "هل يتطلب التطبيق كود تفعيل مدفوع؟",
+        a: "لا، باقة تطبيق ومشغل YAHIA تقدم خدمة مجانية تماماً للمستخدمين لمشاهدة البث المباشر المفضل بأعلى استقرار وبدون تكاليف اشتراك معقدة."
+      },
+      {
+        q: "كيف يمكنني تثبيت التطبيق على شاشة التلفات (Android TV) المتطورة؟",
+        a: "يمكنك تحميل الملفات على هاتفك ثم استخدام تطبيق مثل 'Send Files to TV' لإرسال ملفات الـ APK من الهاتف للتلفاز وتثبيتها، أو فتح هذا الموقع مباشرة على متصفح التلفاز وسحب الملفات وتثبيتها بكل بساطة."
+      }
+    ];
+
+    // Initialize Page features on load
+    window.onload = function() {
+      // Initialize Lucide Icons
+      lucide.createIcons();
+      
+      // Populate shareable url with current browser location
+      const shareUrl = window.location.href.replace('-dev-', '-pre-');
+      document.getElementById('shareable-url-preview').innerText = shareUrl;
+      
+      // Populate FAQs
+      populateFaq();
+
+      // Populate Smart Link Steps
+      updateSmartLinkPreview();
+    };
+
+    // Active Navigation Highlighting
+    function setActiveTab(tabId) {
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('bg-gradient-to-r', 'from-rose-600', 'to-rose-500', 'text-white', 'shadow-md');
+        btn.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-gray-800/30');
+      });
+      const activeBtn = document.getElementById('nav-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-gray-800/30');
+        activeBtn.classList.add('bg-gradient-to-r', 'from-rose-600', 'to-rose-500', 'text-white', 'shadow-md');
+      }
+    }
+
+    // Toggle Mobile Navigation Menu Drawer
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('menu-icon-open');
+      const closeIcon = document.getElementById('menu-icon-close');
+      
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        openIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    }
+
+    function selectMobileTab(tabId) {
+      document.querySelectorAll('.mob-nav-btn').forEach(btn => {
+        btn.classList.remove('bg-rose-600', 'text-white');
+        btn.classList.add('text-gray-300', 'hover:bg-gray-850');
+      });
+      const activeMobBtn = document.getElementById('mob-nav-' + tabId);
+      if (activeMobBtn) {
+        activeMobBtn.classList.remove('text-gray-300', 'hover:bg-gray-850');
+        activeMobBtn.classList.add('bg-rose-600', 'text-white');
+      }
+      setActiveTab(tabId);
+      toggleMobileMenu();
+    }
+
+    // Toast triggers
+    let toastTimeout;
+    function triggerToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      
+      toastMessage.innerText = message;
+      
+      // Clear any pending timeouts
+      clearTimeout(toastTimeout);
+      
+      // Slide and fade in toast
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      
+      // Hide after 4 seconds
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      }, 4000);
+    }
+
+    // General Copy function
+    function copyTextToClipboard(text, successMessage) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          triggerToast(successMessage);
+        }).catch(() => {
+          fallbackCopy(text, successMessage);
+        });
+      } else {
+        fallbackCopy(text, successMessage);
+      }
+    }
+
+    function fallbackCopy(text, successMessage) {
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        if (successful) {
+          triggerToast(successMessage);
+        } else {
+          triggerToast('عذراً، فشل نسخ الرابط. يمكنك نسخه يدوياً من الشاشة.');
+        }
+      } catch (err) {
+        triggerToast('عذراً، فشل نسخ الرابط. يمكنك نسخه يدوياً من الشاشة.');
+      }
+    }
+
+    // Custom copy triggers
+    function copyToClipboard(url, type) {
+      const btnText = document.getElementById('btn-text-' + type);
+      const originalText = btnText.innerText;
+      
+      copyTextToClipboard(url, 'تم نسخ رابط التنزيل بنجاح! يمكنك الآن مشاركته أو نقله.');
+      
+      btnText.innerText = 'تم النسخ! ✓';
+      btnText.classList.add('text-emerald-400');
+      
+      setTimeout(() => {
+        btnText.innerText = originalText;
+        btnText.classList.remove('text-emerald-400');
+      }, 2000);
+    }
+
+    function copyShareableLink() {
+      const shareUrl = window.location.href.replace('-dev-', '-pre-');
+      copyTextToClipboard(shareUrl, 'تم نسخ الرابط العام الجاهز للنشر والمشاركة بنجاح!');
+    }
+
+    function copySmartLinkSuggested() {
+      const customName = document.getElementById('custom-short-name').value.toLowerCase().replace(/[^a-z0-9-_]/g, '') || 'yahiatv';
+      const provider = document.getElementById('selected-provider').value;
+      
+      let finalLink = `bit.ly/${customName}`;
+      if (provider === 'tinyurl') finalLink = `tinyurl.com/${customName}`;
+      if (provider === 'rebrandly') finalLink = `rebrand.ly/${customName}`;
+      if (provider === 'custom') finalLink = `www.${customName || 'yahia-live'}.com`;
+
+      copyTextToClipboard(finalLink, `تم نسخ الرابط المقترح: ${finalLink}`);
+    }
+
+    // Share action
+    function handleShare() {
+      const shareUrl = window.location.href.replace('-dev-', '-pre-');
+      if (navigator.share) {
+        navigator.share({
+          title: 'تحميل تطبيق YAHIA TV مع المشغل الرسمي',
+          text: 'موقع تحميل تطبيق البث المباشر YAHIA TV ومشدد البث المساعد YAHIA PLAYER.',
+          url: shareUrl,
+        }).then(() => {
+          triggerToast('شكراً لك على مشاركة الموقع!');
+        }).catch(() => {
+          copyTextToClipboard(shareUrl, 'تم نسخ رابط الموقع لمشاركته مع أصدقائك!');
+        });
+      } else {
+        copyTextToClipboard(shareUrl, 'تم نسخ رابط الموقع لمشاركته مع أصدقائك!');
+      }
+    }
+
+    // Toggle QR codes displays
+    function toggleQr(type) {
+      const qrArea = document.getElementById('qr-' + type);
+      if (qrArea.classList.contains('hidden')) {
+        qrArea.classList.remove('hidden');
+      } else {
+        qrArea.classList.add('hidden');
+      }
+    }
+
+    // Update Smart Link simulated URLs and directions
+    function updateSmartLinkPreview() {
+      const customNameInput = document.getElementById('custom-short-name');
+      const customName = customNameInput.value.toLowerCase().replace(/[^a-z0-9-_]/g, '') || 'yahiatv';
+      customNameInput.value = customName; // sanitise field on-the-fly
+      
+      const provider = document.getElementById('selected-provider').value;
+      const previewArea = document.getElementById('smart-link-url');
+      const stepsContainer = document.getElementById('guide-steps-container');
+      const shareUrl = window.location.href.replace('-dev-', '-pre-');
+
+      let finalLink = `bit.ly/${customName}`;
+      if (provider === 'tinyurl') finalLink = `tinyurl.com/${customName}`;
+      if (provider === 'rebrandly') finalLink = `rebrand.ly/${customName}`;
+      if (provider === 'custom') finalLink = `www.${customName || 'yahia-live'}.com`;
+
+      previewArea.innerText = finalLink;
+
+      // Populate steps depending on provider
+      let stepsHtml = '';
+      if (provider !== 'custom') {
+        const providerName = provider === 'bitly' ? 'Bitly' : provider === 'tinyurl' ? 'TinyURL' : 'Rebrandly';
+        const providerUrl = provider === 'bitly' ? 'https://bitly.com' : provider === 'tinyurl' ? 'https://tinyurl.com' : 'https://rebrandly.com';
+        
+        stepsHtml = `
+          <div class="bg-slate-900/40 p-4 rounded-xl border border-gray-850">
+            <strong class="text-white block mb-1">1. افتح الموقع المزود</strong>
+            توجّه لموقع <a href="${providerUrl}" target="_blank" rel="noreferrer" class="text-rose-450 underline inline-flex items-center gap-1 font-bold">${providerName} <i data-lucide="external-link" class="w-3 h-3 text-rose-500 inline"></i></a> وافتح حسابًا مجانيًا ببساطة.
+          </div>
+          <div class="bg-slate-900/40 p-4 rounded-xl border border-gray-850">
+            <strong class="text-white block mb-1">2. الصق رابط الاستضافة العام</strong>
+            اضغط على <strong>Create New Link</strong>، والصق رابطك السحابي الطويل النشط: <span class="text-emerald-450 break-all select-all text-[10px]">${shareUrl}</span>
+          </div>
+          <div class="bg-slate-900/40 p-4 rounded-xl border border-gray-850">
+            <strong class="text-white block mb-1">3. اختر الاسم المخصص</strong>
+            اكتب الاسم المفضل في مربع <strong>Back-half name</strong> (مثلاً: <span class="font-mono text-cyan-400 font-bold">${customName}</span>) واصنع الرابط المتغير!
+          </div>
+        `;
+      } else {
+        stepsHtml = `
+          <div class="bg-slate-900/40 p-4 rounded-xl border border-gray-850">
+            <strong class="text-white block mb-1">1. شراء الدومين الفريد</strong>
+            توجَّه لأي شركة حجز نطاقات شهيرة مثل <strong>GoDaddy</strong> أو <strong>Namecheap</strong> واشترِ دومين باسمك.
+          </div>
+          <div class="bg-slate-900/40 p-4 rounded-xl border border-gray-850">
+            <strong class="text-white block mb-1">2. أضف تحويل النطاق الذكي (Forwarding)</strong>
+            من لوحة تحكم النطاق، توجه لقسم <strong>Domain Forwarding</strong> (توجيه النطاقات).
+          </div>
+          <div class="bg-slate-900/40 p-4 rounded-xl border border-gray-850">
+            <strong class="text-white block mb-1">3. الصق رابطك السحابي</strong>
+            الصق رابطك السحابي الفعّال <span class="text-emerald-400 select-all">${shareUrl.substring(0, 20)}...</span> واجعله دائمًا (301) ليتم التوجيه فوراً عند دخول الدومين المخصص!
+          </div>
+        `;
+      }
+
+      stepsContainer.innerHTML = stepsHtml;
+      // Re-trigger lucide icons inside dynamically added components
+      lucide.createIcons();
+    }
+
+    // Populate FAQs Accordions list
+    function populateFaq() {
+      const container = document.getElementById('faq-container');
+      let faqHtml = '';
+      
+      faqs.forEach((faq, idx) => {
+        const isOpen = idx === 0; // open first by default
+        faqHtml += `
+          <div class="bg-slate-900/25 border border-gray-850 hover:border-gray-800 rounded-2xl overflow-hidden transition-colors duration-200">
+            <button onclick="toggleFaq(${idx})" class="w-full py-5 px-6 flex items-center justify-between text-right gap-4 font-bold text-white transition focus:outline-none select-none">
+              <span class="text-sm sm:text-base">${faq.q}</span>
+              <i data-lucide="chevron-down" id="faq-chevron-${idx}" class="w-5 h-5 text-rose-500 shrink-0 transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}"></i>
+            </button>
+            <div id="faq-answer-${idx}" class="transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[500px] border-t border-gray-900 py-5 px-6 opacity-100' : 'max-h-0 py-0 px-6 opacity-0 overflow-hidden'}">
+              <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">${faq.a}</p>
+            </div>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = faqHtml;
+      lucide.createIcons();
+    }
+
+    // Toggle FAQ item open-close with smooth visual sliding transition emulation
+    function toggleFaq(index) {
+      faqs.forEach((_, idx) => {
+        const ans = document.getElementById('faq-answer-' + idx);
+        const chev = document.getElementById('faq-chevron-' + idx);
+        
+        if (idx === index) {
+          if (ans.classList.contains('max-h-0')) {
+            // Open
+            ans.classList.remove('max-h-0', 'py-0', 'opacity-0', 'overflow-hidden');
+            ans.classList.add('max-h-[500px]', 'border-t', 'border-gray-900', 'py-5', 'opacity-100');
+            chev.classList.add('rotate-180');
+          } else {
+            // Close
+            ans.classList.remove('max-h-[500px]', 'border-t', 'border-gray-900', 'py-5', 'opacity-100');
+            ans.classList.add('max-h-0', 'py-0', 'opacity-0', 'overflow-hidden');
+            chev.classList.remove('rotate-180');
+          }
+        } else {
+          // Close others
+          ans.classList.remove('max-h-[500px]', 'border-t', 'border-gray-900', 'py-5', 'opacity-100');
+          ans.classList.add('max-h-0', 'py-0', 'opacity-0', 'overflow-hidden');
+          chev.classList.remove('rotate-180');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
